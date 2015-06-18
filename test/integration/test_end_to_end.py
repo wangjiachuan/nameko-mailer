@@ -14,4 +14,3 @@ runner = ServiceRunner(config)
 runner.add_service(Mailer)
 
 runner.start()
-

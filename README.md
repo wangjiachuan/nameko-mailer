@@ -1,4 +1,4 @@
-# Mailer services based on Nameko microservices framework
+# Mailer service based on Nameko microservices framework
 
 ## Dev environment setup (Mac)
  
@@ -58,7 +58,7 @@ Type ```exit()``` to stop Nameko interactive session.
 ### Run unit test 
 
 ```sh
-$ py.test test
+$ py.test test/unit
 ```
 
 ### Run integration test
@@ -76,9 +76,8 @@ Not sure how to supply environment (.env) variables e.g. separate Madrill API Ke
 
 ## Feedback on documentation
 
-https://nameko.readthedocs.org/en/latest/key_concepts.html#service-runner
-
-from nameko.utils import get_container
-should be
-from nameko.testing.utils import get_container
+in: https://nameko.readthedocs.org/en/latest/key_concepts.html#service-runner  
+from nameko.utils import get_container  
+should be:  
+from nameko.testing.utils import get_container  
 

@@ -2,3 +2,4 @@ fake-factory==0.5.2
 nameko==2.1.2
 mandrill==1.0.57
 pytest==2.7.1
+jsonschema==2.5.1

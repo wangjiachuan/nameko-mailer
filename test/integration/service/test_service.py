@@ -15,17 +15,17 @@ class PaymentService(object):
     def emit_event(self):
 
         payload = {
-            'client': {
-                'name': fake.name(),
-                'email': fake.safe_email()
+            "client": {
+                "name": fake.name(),
+                "email": fake.safe_email()
             },
-            'payee': {
-                'name': fake.name(),
-                'email': fake.safe_email()
+            "payee": {
+                "name": fake.name(),
+                "email": fake.safe_email()
             },
-            'payment': {
-                'amount': fake.random_int(),
-                'currency': fake.random_element(
+            "payment": {
+                "amount": fake.random_int(),
+                "currency": fake.random_element(
                     ("USD", "GBP", "EUR")
                 )
             }
