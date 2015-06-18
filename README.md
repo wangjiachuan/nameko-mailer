@@ -20,7 +20,7 @@ Make sure RabbitMQ is installed and broker is running.
 Despite Nameko instructions broker needs to be started after brew installation on Mac.
 
 ```sh
-$ brew update
+$ brew update  
 $ brew install rabbitmq
 ```
 
@@ -45,10 +45,40 @@ $ nameko shell
 You should see
 
 ```sh
-Nameko Python 2.7.6 (default, Sep  9 2014, 15:04:36)
-[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] shell on darwin
-Broker: amqp://guest:guest@localhost
+Nameko Python 2.7.6 (default, Sep  9 2014, 15:04:36)  
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] shell on darwin  
+Broker: amqp://guest:guest@localhost  
 >>>
 ```
 
 Type ```exit()``` to stop Nameko interactive session.
+
+## Run Test
+
+### Run unit test 
+
+```sh
+$ py.test test
+```
+
+### Run integration test
+
+```sh
+$ cd test/integration/  
+$ nameko run test_end_to_end
+```
+
+At this point Mailer and Payment services will be run and emails will be send to Mandrill.
+
+## TODO
+
+Not sure how to supply environment (.env) variables e.g. separate Madrill API Key for dev/test/prod 
+
+## Feedback on documentation
+
+https://nameko.readthedocs.org/en/latest/key_concepts.html#service-runner
+
+from nameko.utils import get_container
+should be
+from nameko.testing.utils import get_container
+

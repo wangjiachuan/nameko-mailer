@@ -1,33 +1,17 @@
-from faker import Factory
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../../')
 
-from nameko.events import EventDispatcher
-from nameko.timer import timer
+from service.test_service import PaymentService
+from mailer.service import Mailer
+from nameko.runners import ServiceRunner
 
-fake = Factory.create()
 
+config = {'AMQP_URI': 'amqp://guest:guest@localhost:5672/'}
+runner = ServiceRunner(config)
 
-class PaymentService(object):
-    name = "payments"
+# Add Mailer service. Dependant Payment Service will be started automatically.
+runner.add_service(Mailer)
 
-    dispatch = EventDispatcher()
+runner.start()
 
-    @timer(interval=10)
-    def emit_event(self):
-
-        payload = {
-            'client': {
-                'name': fake.name(),
-                'email': fake.safe_email()
-            },
-            'payee': {
-                'name': fake.name(),
-                'email': fake.safe_email()
-            },
-            'payment': {
-                'amount': fake.random_int(),
-                'currency': fake.random_element(
-                    ("USD", "GBP", "EUR")
-                )
-            }
-        }
-        self.dispatch("payment_received", payload)
